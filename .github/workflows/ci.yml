@@ -55,7 +55,8 @@ jobs:
     - name: Install Linux packages
       run: |
         sudo apt update
-        sudo apt install -y cmake libssh2-1-dev openssh-client openssh-server
+        sudo apt install -y libssh2-1-dev libgpg-error-dev openssh-client openssh-server
+        pkg-config --libs --static libcrypto | grep -q jitterentropy && sudo apt install -y libjitterentropy3-dev || true
     - name: Set up Ruby on Linux
       uses: ruby/setup-ruby@v1
       with:
